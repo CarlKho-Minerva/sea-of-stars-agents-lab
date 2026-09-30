@@ -22,6 +22,8 @@ powershell -ExecutionPolicy Bypass -File .\setup.ps1
 
 It deletes any old `.venv`, creates a clean one, installs `requirements.txt`, runs `verify_setup.py` (wait for `SETUP OK`), then opens JupyterLab. After that, double-click `launch.bat` to reopen the lab.
 
+**Or in VS Code:** open this folder, open any notebook, and pick the `.venv` kernel if asked (the workspace already points at it). Then **Run All**, or Shift+Enter cell by cell.
+
 <details>
 <summary>Manual steps / other OS</summary>
 
@@ -66,6 +68,14 @@ Then `00_Gym_Basics` is the recap of all of the above.
 6. `05_Weight_Level_Learning` — forward pass, loss, backprop, actual weight changes
 7. `06_State_Representation_Research` — raw sources → candidate representations → harness → held-out evaluation → Pareto frontier
 
+### How every notebook is laid out
+
+Every notebook, micro-course and main, uses the same pattern:
+
+1. `# title`, then a row of **concept chips**: the concepts this notebook uses.
+2. For each step: a dark **concept card** (its color is the concept), a short explanation, then a figure.
+3. Each concept keeps one color everywhere. STATE is always blue, ACTION orange, REWARD green, Q gold, POLICY dark teal, and so on. That goes for chips, cards, flow-diagram boxes and plot bars alike. The full key is `COLORS` in `visuals.py`.
+
 ### How to read each cell
 
 Every teaching cell is followed by a figure. Read/run the cell, look at the figure directly under it, say out loud what changed, then continue. At every step ask:
@@ -95,11 +105,9 @@ Damage, MP and some timing values are normalized for teaching, not a frame-perfe
 notebooks/          the curriculum (above)
 eldermist/          the Gymnasium env, policies, Q-learning, tiny MLP, plotting
 lineworld.py        6-cell LineWorld env for the micro-course
-learning_cards.py   color key + figures for the micro-course
-visuals.py          diagram helpers used by the main notebooks
+visuals.py          the one shared visual module: concept colors, chips, plot style, figures
 docs/               CONCEPT_MAP, WHY_MOVES_HAPPEN, FATIMAH_STATE_REP, ROADMAP, SOURCES
 extras/pong/        optional real Pong / PPO / Atari scripts (own requirements.txt)
-figures/            exported PNGs of every notebook figure
 quick_demo.py       random vs rule vs learned policy, from the command line
 tools/              verify_notebook_visuals.py (checks every teaching cell has a visual)
 ```
